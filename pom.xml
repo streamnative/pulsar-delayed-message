@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.streamnative</groupId>
+    <artifactId>pulsar-delayed-message</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Pulsar :: Delayed Message Plugin</name>
+    <description>
+        This is Pulsar plugin for support large amount of delayed messages delivery.
+    </description>
+
+    <modules>
+        <module>core</module>
+        <module>tests</module>
+    </modules>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <javac.target>1.8</javac.target>
+        <pulsar.version>2.8.0-rc-202102222222</pulsar.version>
+        <log4j2.version>2.10.0</log4j2.version>
+        <lombok.version>1.18.4</lombok.version>
+        <license-maven-plugin.version>3.0.rc1</license-maven-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.pulsar</groupId>
+                <artifactId>pulsar-broker</artifactId>
+                <version>${pulsar.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${license-maven-plugin.version}</version>
+                <configuration>
+                    <header>resources/license.template</header>
+
+                    <excludes>
+                        <exclude>LICENSE</exclude>
+                        <exclude>NOTICE</exclude>
+                        <exclude>Jenkinsfile</exclude>
+                        <exclude>resources/license.template</exclude>
+                        <exclude>**/build/**</exclude>
+                        <exclude>**/ahc.properties</exclude>
+                        <exclude>**/.idea/**</exclude>
+                        <exclude>**/.github/**</exclude>
+                    </excludes>
+                    <mapping>
+                        <proto>JAVADOC_STYLE</proto>
+                        <go>DOUBLESLASH_STYLE</go>
+                        <conf>SCRIPT_STYLE</conf>
+                        <ini>SCRIPT_STYLE</ini>
+                        <yaml>SCRIPT_STYLE</yaml>
+                        <tf>SCRIPT_STYLE</tf>
+                        <cfg>SCRIPT_STYLE</cfg>
+                        <Makefile>SCRIPT_STYLE</Makefile>
+                        <service>SCRIPT_STYLE</service>
+                        <cc>JAVADOC_STYLE</cc>
+                        <md>XML_STYLE</md>
+                        <txt>SCRIPT_STYLE</txt>
+                        <scss>JAVADOC_STYLE</scss>
+                        <Doxyfile>SCRIPT_STYLE</Doxyfile>
+                        <tfvars>SCRIPT_STYLE</tfvars>
+                    </mapping>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>bintray-streamnative-maven</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/streamnative/maven</url>
+        </repository>
+
+        <repository>
+            <id>central</id>
+            <layout>default</layout>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+</project>
